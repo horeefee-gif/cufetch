@@ -29,7 +29,6 @@ chmod +x cufetch
 # How to run with one command?
 
 ```
-cd cufetch/
-mkdir ~/.local/bin
-mv cufetch ~/.local/bin/
+sudo cp cufetch/cufetch /usr/local/bin/cufetch
+
 ```
