@@ -33,7 +33,3 @@ sudo cp cufetch/cufetch /usr/local/bin/cufetch
 
 ```
 
-
-# Cufetch
-
-![cufetch](/screenshot/image.png)
