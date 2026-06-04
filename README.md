@@ -30,5 +30,6 @@ chmod +x cufetch
 
 ```
 cd cufetch/
+mkdir ~/.local/bin
 mv cufetch ~/.local/bin/
 ```
