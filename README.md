@@ -32,3 +32,5 @@ chmod +x cufetch
 sudo cp cufetch/cufetch /usr/local/bin/cufetch
 
 ```
+
+![cufetch](/screenshot/image.png)
