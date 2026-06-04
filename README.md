@@ -13,6 +13,7 @@ cd cufetch/
 *Run cufetch or compile*
 
 ```
+chmod +x cufetch
 ./cufetch
 ```
 
@@ -21,6 +22,7 @@ cd cufetch/
 ```
 cd src/
 g++ -O2 -std=c++17 cufetch.cpp -o cufetch
+chmod +x cufetch
 ./cufetch
 ```
 
