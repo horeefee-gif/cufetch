@@ -15,7 +15,6 @@ struct SysInfo {
     std::string host;
     unsigned hours = 0;
     unsigned minutes = 0;
-    std::string pkgs;
     std::string memory;
     std::string cpu;
     std::string gpu;
@@ -35,18 +34,6 @@ std::string exec_command(const char* cmd) {
         result.pop_back();
     }
     return result;
-}
-
-std::string get_distro() {
-    std::ifstream in("/etc/os-release");
-    std::string line;
-    while (std::getline(in, line)) {
-        if (line.find("ID_LIKE=", 0) == 0) { 
-            std::string value = line.substr(8);
-            return value;
-        }
-    }
-    return "Linux";
 }
 
 std::string get_title() {
@@ -159,15 +146,6 @@ int main() {
     info.kernel = exec_command("uname -r");
     info.host = get_host();
     get_uptime(info.hours, info.minutes);
-    info.distro = get_distro();
-
-    if (info.distro == "arch") {
-        info.pkgs = exec_command("pacman -Q | wc -l");
-    } else if (info.distro == "fedora") {
-        info.pkgs = exec_command("rpm -qa | wc -l"); 
-    } else if (info.distro == "debian") {
-        info.pkgs = exec_command("dpkg -l | grep ^ii | wc -l");
-    }
 
     info.memory = get_memory();
     info.cpu = get_cpu();
@@ -180,10 +158,9 @@ int main() {
     std::cout << "    |o_o |:"    << "\tHost: " << info.host << "\n";
     std::cout << "    |:_/ |"     << "\tKernel: " << info.kernel << "\n";
     std::cout << "   //   \\ \\"   << "\tUptime: " << info.hours << "h " << info.minutes << "m\n";
-    std::cout << "  (|     | )"   << "\tPackages: " << info.pkgs << "\n";
-    std::cout << "  /'\\_   _/`\\"  << "\tMemory: " << info.memory << "\n";
-    std::cout << "  \\___)=(___/"  << "\tCPU: " << info.cpu << "\n";
-    std::cout << "             " << "\tGPU: " << info.gpu << "\n\n";
+    std::cout << "  (|     | )"   << "\tMemory: " << info.memory << "\n";
+    std::cout << "  /'\\_   _/`\\"  << "\tCPU: " << info.cpu << "\n";
+    std::cout << "  \\___)=(___/"  << "\tGPU: " << info.gpu << "\n\n";
 
     return 0;
 }
